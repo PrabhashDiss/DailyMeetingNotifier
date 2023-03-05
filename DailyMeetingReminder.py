@@ -1,8 +1,10 @@
 import csv
 from datetime import datetime
+import smtplib
+import time
 
 # Function to display meeting details on the GUI
-def display_meetings():
+def mail_meetings():
     current_time = datetime.now().strftime("%H:%M")
     current_day = datetime.now().strftime("%A").lower()
 
@@ -18,4 +20,17 @@ def display_meetings():
 
             # If the meeting time matches the current time, display the details and link on the GUI
             if meeting_time == current_time:
-                pass
+                # Set up email server details
+                smtp_server = 'smtp.gmail.com'
+                port = 587
+                sender_email = 'prabhashdissanayake2k@gmail.com'
+                sender_password = 'qvcnbdxyiazedsjt'
+                recipient_email = 'prabhashdissanayake2k@gmail.com'
+
+                # Send email notification
+                message = f'Subject: {{{meeting_details}\n\n{meeting_link}}}'
+                with smtplib.SMTP(smtp_server, port) as server:
+                    server.starttls()
+                    server.login(sender_email, sender_password)
+                    server.sendmail(sender_email, recipient_email, message)
+                    print('Email sent successfully')
