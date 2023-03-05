@@ -34,3 +34,8 @@ def mail_meetings():
                     server.login(sender_email, sender_password)
                     server.sendmail(sender_email, recipient_email, message)
                     print('Email sent successfully')
+
+# Schedule the function to run every 1 minutes
+while True:
+    send_email()
+    time.sleep(60)  # Wait for 1 minutes
