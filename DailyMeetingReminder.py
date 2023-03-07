@@ -28,7 +28,7 @@ def mail_meetings():
                 recipient_email = 'prabhashdissanayake2k@gmail.com'
 
                 # Send email notification
-                message = f'Subject: {{{meeting_details}\n\n{meeting_link}}}'
+                message = f'Subject: {meeting_details}\n\n{meeting_link}'
                 with smtplib.SMTP(smtp_server, port) as server:
                     server.starttls()
                     server.login(sender_email, sender_password)
@@ -37,5 +37,5 @@ def mail_meetings():
 
 # Schedule the function to run every 1 minutes
 while True:
-    send_email()
+    mail_meetings()
     time.sleep(60)  # Wait for 1 minutes
